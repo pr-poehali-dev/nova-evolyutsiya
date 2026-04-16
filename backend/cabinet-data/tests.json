@@ -1,0 +1,11 @@
+{
+  "tests": [
+    {
+      "name": "Get workouts unauthorized",
+      "method": "GET",
+      "path": "/?action=workouts",
+      "expectedStatus": 401,
+      "bodyMatcher": "partial"
+    }
+  ]
+}

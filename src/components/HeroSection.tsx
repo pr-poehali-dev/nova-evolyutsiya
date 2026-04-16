@@ -22,16 +22,19 @@ export default function HeroSection() {
 
   const slides = [
     {
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-j46TPXDHzpn3M65wMva3qHPNhwokYn.png",
-      alt: "Группа бегунов в движении",
+      image: "https://cdn.poehali.dev/projects/89100300-6839-4610-b3f6-e5490e939394/files/e45f839b-7a00-44d7-a0a5-53373c121585.jpg",
+      alt: "Групповая тренировка в зале",
+      label: "",
     },
     {
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-oH2K0gw1HEqvYhhbwJrYbmkBrbksyk.png",
-      alt: "Бегунья с эффектом размытия",
+      image: "https://cdn.poehali.dev/projects/89100300-6839-4610-b3f6-e5490e939394/files/482f52b1-f427-4412-8fca-e5115e29af6d.jpg",
+      alt: "Персональный тренер",
+      label: "Тренер подбирает вид тренировок и питание лично под каждого",
     },
     {
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DQ2brNc5Vszxllx17YNA6JqGqiHaRm.png",
-      alt: "Бегун во главе группы",
+      image: "https://cdn.poehali.dev/projects/89100300-6839-4610-b3f6-e5490e939394/files/297d0af6-8941-4499-a5c5-1aee193cf3fb.jpg",
+      alt: "Личный кабинет на смартфоне",
+      label: "В личном кабинете: расписание тренировок, дневник питания и переписка с тренером",
     },
   ]
 
@@ -206,9 +209,17 @@ export default function HeroSection() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl md:text-2xl font-light tracking-wide mb-8 text-gray-200">Фитнес-клуб для тех, кто хочет результат</p>
+          <p className="text-xl md:text-2xl font-light tracking-wide mb-4 text-gray-200">Фитнес-клуб для тех, кто хочет результат</p>
 
-          {/* CTA Button - Now using LiquidButton */}
+          {/* Slide label */}
+          {slides[currentSlide].label && (
+            <p className="text-base md:text-lg font-medium text-white/90 bg-black/30 backdrop-blur-sm rounded-xl px-5 py-2 mb-8 inline-block max-w-xl">
+              {slides[currentSlide].label}
+            </p>
+          )}
+          {!slides[currentSlide].label && <div className="mb-8" />}
+
+          {/* CTA Button */}
           <LiquidButton
             size="xxl"
             className="font-semibold text-lg tracking-wide"

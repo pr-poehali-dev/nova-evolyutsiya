@@ -84,7 +84,7 @@ const SmoothScrollHero: React.FC<SmoothScrollHeroProps> = ({
             y: ctaY,
           }}
         >
-          <div className="text-center text-white max-w-4xl mx-auto px-6">
+          <div className="text-center text-white max-w-4xl mx-auto px-6 py-8 overflow-y-auto max-h-screen">
             {/* Main CTA Heading */}
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-wider mb-6 leading-none">
               ГОТОВ СТАТЬ

@@ -12,7 +12,7 @@ export default function Index() {
   const timelineEntries = [
     {
       id: 1,
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-RJ3iTXUn5SUexF6nHMZYhMoQLNCboK.png",
+      image: "https://cdn.poehali.dev/projects/89100300-6839-4610-b3f6-e5490e939394/files/e8f1363d-cde6-4af6-a5b0-9f1319f3c07b.jpg",
       alt: "Групповая тренировка в зале",
       title: "Групповые тренировки",
       description:
@@ -21,7 +21,7 @@ export default function Index() {
     },
     {
       id: 2,
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-LN9OPh9hw0b9rwSPRSslHoejcfoKHe.png",
+      image: "https://cdn.poehali.dev/projects/89100300-6839-4610-b3f6-e5490e939394/files/d4454663-a3a7-4519-93b9-690f21862ac0.jpg",
       alt: "Персональная тренировка",
       title: "Персональный подход",
       description:
@@ -30,7 +30,7 @@ export default function Index() {
     },
     {
       id: 3,
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-1FdGyjVpWQANGzsDWpoPIvF5SVI2za.png",
+      image: "https://cdn.poehali.dev/projects/89100300-6839-4610-b3f6-e5490e939394/files/f48390bd-d551-478e-a5ec-dacdc74ac49d.jpg",
       alt: "Атмосфера и сообщество клуба",
       title: "Больше, чем зал",
       description:

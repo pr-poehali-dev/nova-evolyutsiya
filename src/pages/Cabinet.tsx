@@ -73,7 +73,7 @@ export default function Cabinet() {
             </div>
           </div>
 
-          <div className="border-t border-gray-100 pt-6 space-y-4">
+          <div className="border-t border-gray-100 pt-6 space-y-3">
             <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
               <Icon name="User" size={18} className="text-gray-500" />
               <div>
@@ -88,14 +88,32 @@ export default function Cabinet() {
                 <p className="text-gray-900 font-medium">{user.email}</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl">
-              <Icon name="Trophy" size={18} className="text-gray-500" />
-              <div>
-                <p className="text-xs text-gray-400 font-medium">Статус</p>
-                <p className="text-gray-900 font-medium">Участник клуба «В тонусе»</p>
-              </div>
-            </div>
           </div>
+        </div>
+
+        {/* Quick access cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+          <button
+            onClick={() => navigate("/workouts")}
+            className="bg-gray-900 text-white rounded-2xl p-6 text-left hover:bg-gray-800 transition-colors group"
+          >
+            <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-white/20 transition-colors">
+              <Icon name="Calendar" size={24} className="text-white" />
+            </div>
+            <h3 className="font-black text-lg mb-1">Расписание тренировок</h3>
+            <p className="text-gray-400 text-sm">Планируйте и следите за своими занятиями</p>
+          </button>
+
+          <button
+            onClick={() => navigate("/nutrition")}
+            className="bg-white border border-gray-100 rounded-2xl p-6 text-left hover:border-gray-300 transition-colors group shadow-sm"
+          >
+            <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-green-100 transition-colors">
+              <Icon name="Apple" size={24} className="text-green-600" />
+            </div>
+            <h3 className="font-black text-gray-900 text-lg mb-1">Дневник питания</h3>
+            <p className="text-gray-400 text-sm">Записывайте приёмы пищи и считайте КБЖУ</p>
+          </button>
         </div>
       </div>
     </div>
