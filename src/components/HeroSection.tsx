@@ -1,10 +1,24 @@
 import { LiquidButton } from "@/components/ui/liquid-glass-button"
 import { Menu, ChevronLeft, ChevronRight, X } from "lucide-react"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import AuthModal from "@/components/AuthModal"
+
+interface User {
+  id: number
+  email: string
+  name: string
+}
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [authMode, setAuthMode] = useState<"login" | "register" | null>(null)
+  const [user, setUser] = useState<User | null>(() => {
+    const stored = localStorage.getItem("auth_user")
+    return stored ? JSON.parse(stored) : null
+  })
+  const navigate = useNavigate()
 
   const slides = [
     {
@@ -42,6 +56,15 @@ export default function HeroSection() {
   }
 
   return (
+    <>
+    {authMode && (
+      <AuthModal
+        mode={authMode}
+        onClose={() => setAuthMode(null)}
+        onSuccess={(u) => setUser(u)}
+        onSwitchMode={(m) => setAuthMode(m)}
+      />
+    )}
     <div id="hero" className="relative h-screen w-full overflow-hidden bg-black">
       {/* Background Image */}
       <div
@@ -71,6 +94,36 @@ export default function HeroSection() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
             </button>
           ))}
+        </div>
+
+        {/* Auth buttons */}
+        <div className="hidden md:flex items-center gap-3">
+          {user ? (
+            <button
+              onClick={() => navigate("/cabinet")}
+              className="flex items-center gap-2 text-white border border-white/40 rounded-full px-4 py-2 text-sm font-medium hover:bg-white/10 transition-colors"
+            >
+              <span className="w-6 h-6 bg-white text-gray-900 rounded-full flex items-center justify-center text-xs font-black">
+                {(user.name || user.email)[0].toUpperCase()}
+              </span>
+              Личный кабинет
+            </button>
+          ) : (
+            <>
+              <button
+                onClick={() => setAuthMode("login")}
+                className="text-white text-sm font-medium hover:text-gray-300 transition-colors"
+              >
+                Войти
+              </button>
+              <button
+                onClick={() => setAuthMode("register")}
+                className="bg-white text-gray-900 text-sm font-bold px-4 py-2 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                Регистрация
+              </button>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -177,5 +230,6 @@ export default function HeroSection() {
         </div>
       </div>
     </div>
+    </>
   )
 }
