@@ -96,7 +96,7 @@ export default function HeroSection() {
           ))}
         </div>
 
-        {/* Auth buttons */}
+        {/* Auth buttons desktop */}
         <div className="hidden md:flex items-center gap-3">
           {user ? (
             <button
@@ -126,14 +126,31 @@ export default function HeroSection() {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-white hover:text-gray-300 transition-colors"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          <span className="sr-only">Меню</span>
-        </button>
+        {/* Mobile: auth icon + burger */}
+        <div className="md:hidden flex items-center gap-3">
+          {user ? (
+            <button
+              onClick={() => navigate("/cabinet")}
+              className="w-8 h-8 bg-white text-gray-900 rounded-full flex items-center justify-center text-sm font-black"
+            >
+              {(user.name || user.email)[0].toUpperCase()}
+            </button>
+          ) : (
+            <button
+              onClick={() => setAuthMode("login")}
+              className="text-white text-sm font-medium border border-white/40 rounded-full px-3 py-1"
+            >
+              Войти
+            </button>
+          )}
+          <button
+            className="text-white hover:text-gray-300 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <span className="sr-only">Меню</span>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Navigation Menu */}
@@ -149,6 +166,31 @@ export default function HeroSection() {
                 {item.name}
               </button>
             ))}
+            <div className="pt-4 border-t border-white/20 w-40 flex flex-col items-center gap-4">
+              {user ? (
+                <button
+                  onClick={() => { setIsMenuOpen(false); navigate("/cabinet") }}
+                  className="text-white text-xl font-bold tracking-wider hover:text-gray-300 transition-colors"
+                >
+                  Личный кабинет
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={() => { setIsMenuOpen(false); setAuthMode("login") }}
+                    className="text-white text-xl font-bold tracking-wider hover:text-gray-300 transition-colors"
+                  >
+                    Войти
+                  </button>
+                  <button
+                    onClick={() => { setIsMenuOpen(false); setAuthMode("register") }}
+                    className="bg-white text-gray-900 text-lg font-bold px-6 py-2 rounded-full hover:bg-gray-100 transition-colors"
+                  >
+                    Регистрация
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       )}
