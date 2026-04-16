@@ -158,11 +158,14 @@ interface TestimonialCardProps {
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ position, testimonial, handleMove, cardSize }) => {
   const isCenter = position === 0
+  const initials = testimonial.by.split(" ").slice(0, 2).map((w: string) => w[0]).join("").toUpperCase()
+  const bgColor = testimonial.imgSrc.match(/backgroundColor=([^&]+)/)?.[1] || "374151"
+
   return (
     <div
       onClick={() => handleMove(position)}
       className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out",
+        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-6 transition-all duration-500 ease-in-out flex flex-col",
         isCenter
           ? "z-10 bg-gray-900 text-white border-gray-900"
           : "z-0 bg-white text-gray-900 border-gray-200 hover:border-gray-400",
@@ -182,31 +185,36 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ position, testimonial
     >
       <span
         className="absolute block origin-top-right rotate-45 bg-gray-300"
-        style={{
-          right: -2,
-          top: 48,
-          width: SQRT_5000,
-          height: 2,
-        }}
+        style={{ right: -2, top: 48, width: SQRT_5000, height: 2 }}
       />
-      <img
-        src={testimonial.imgSrc || "/placeholder.svg"}
-        alt={`${testimonial.by.split(",")[0]}`}
-        className="mb-4 h-14 w-12 bg-gray-100 object-cover object-top"
+
+      {/* Avatar with initials */}
+      <div
+        className="mb-3 h-12 w-12 rounded-sm flex items-center justify-center text-white font-black text-lg shrink-0"
         style={{
+          backgroundColor: `#${bgColor}`,
           boxShadow: "3px 3px 0px hsl(var(--background))",
         }}
-      />
-      <h3 className={cn("text-base sm:text-xl font-medium", isCenter ? "text-white" : "text-gray-900")}>
-        "{testimonial.testimonial}"
-      </h3>
-      <p
-        className={cn(
-          "absolute bottom-8 left-8 right-8 mt-2 text-sm italic",
-          isCenter ? "text-gray-300" : "text-gray-600",
-        )}
       >
-        - {testimonial.by}
+        {initials}
+      </div>
+
+      {/* Quote text — ограничен по высоте */}
+      <p className={cn(
+        "text-sm sm:text-base font-medium leading-snug flex-1 overflow-hidden",
+        isCenter ? "text-white" : "text-gray-900"
+      )}
+        style={{ display: "-webkit-box", WebkitLineClamp: 5, WebkitBoxOrient: "vertical", overflow: "hidden" }}
+      >
+        «{testimonial.testimonial}»
+      </p>
+
+      {/* Author */}
+      <p className={cn(
+        "mt-3 text-xs italic shrink-0",
+        isCenter ? "text-gray-300" : "text-gray-500"
+      )}>
+        — {testimonial.by}
       </p>
     </div>
   )
